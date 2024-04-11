@@ -27,6 +27,12 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // jsp 문법 해석용 tag library (JSTL) 제공
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+    // jsp -> servlet 변환
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+
 }
 
 tasks.named('test') {
