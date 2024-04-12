@@ -28,28 +28,32 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user=userService.getUserById(id);
+        User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User savedUser=userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
-        User updatedUser=userService.updateUser(id,user);
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
         return ResponseEntity.ok(updatedUser);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> patchUser(@PathVariable Long id, @RequestBody User user){
-        User patchedUser=userService.patchUser(id,user);
+    public ResponseEntity<User> patchUser(@PathVariable Long id, @RequestBody User user) {
+        User patchedUser = userService.patchUser(id, user);
         return ResponseEntity.ok(patchedUser);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
 
-
+    }
 }
