@@ -20,8 +20,8 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<User> getUser() {
+    public ResponseEntity<List<User>> getUser() {
         List<User> allUsers = userRepository.findAll();
-        return ResponseEntity.ok((User) allUsers);
+        return ResponseEntity.ok(allUsers);
     }
 }
