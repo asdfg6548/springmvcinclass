@@ -31,6 +31,10 @@ dependencies {
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
     // jsp -> servlet 변환
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    // MySQL
+    implementation 'com.mysql:mysql-connector-j:8.3.0'
+    // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 
 }
