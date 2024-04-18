@@ -3,11 +3,13 @@ package ac.su.springmvcinclass.controller;
 import ac.su.springmvcinclass.domain.User;
 import ac.su.springmvcinclass.repository.UserRepository;
 import ac.su.springmvcinclass.service.UserService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -56,4 +58,5 @@ public class UserRestController {
         return ResponseEntity.noContent().build();
 
     }
+
 }
