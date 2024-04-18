@@ -1,5 +1,7 @@
 package ac.su.springmvcinclass.controller;
 
+import ac.su.springmvcinclass.domain.User;
+import ac.su.springmvcinclass.domain.UserBmiDTO;
 import ac.su.springmvcinclass.domain.UserDTO;
 import ac.su.springmvcinclass.repository.UserRepository;
 import ac.su.springmvcinclass.service.UserService;
@@ -58,5 +60,19 @@ public class UserRestController {
         return ResponseEntity.noContent().build();
 
     }
+
+    @GetMapping("/bmi")
+    public ResponseEntity<List<UserBmiDTO>> getAllUsersWithBmi() {
+        List<UserBmiDTO> users = userService.findAllUserWithBmi();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}/bmi")
+    public ResponseEntity<UserBmiDTO> getUserWithBmi(@PathVariable Long id) {
+        UserBmiDTO user = userService.findUserBmiDTOById(id);
+        return ResponseEntity.ok(user);
+    }
+
+
 
 }

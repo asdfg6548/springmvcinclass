@@ -1,6 +1,7 @@
 package ac.su.springmvcinclass.service;
 
 import ac.su.springmvcinclass.domain.User;
+import ac.su.springmvcinclass.domain.UserBmiDTO;
 import ac.su.springmvcinclass.domain.UserDTO;
 import ac.su.springmvcinclass.exception.UserNotFoundException;
 import ac.su.springmvcinclass.repository.UserRepository;
@@ -70,4 +71,22 @@ public class UserService {
     public void deleteUser(Long id){
         userRepository.deleteById(id);
     }
+
+    public List<UserBmiDTO> findAllUserWithBmi() {
+        List<User> allUsers = userRepository.findAll();
+        return convertToUserBmiDTOList(allUsers);
+    }
+
+    public static List<UserBmiDTO> convertToUserBmiDTOList(List<User> userList) {
+        return userList.stream()
+                .map(UserBmiDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    public UserBmiDTO findUserBmiDTOById(Long id) {
+        User foundUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return UserBmiDTO.fromEntity(foundUser);
+    }
+
+
 }
