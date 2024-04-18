@@ -1,6 +1,6 @@
 package ac.su.springmvcinclass.controller;
 
-import ac.su.springmvcinclass.domain.User;
+import ac.su.springmvcinclass.domain.UserDTO;
 import ac.su.springmvcinclass.repository.UserRepository;
 import ac.su.springmvcinclass.service.UserService;
 import org.springframework.http.HttpHeaders;
@@ -23,32 +23,32 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> allUsers = userService.getAllUsers();
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> allUsers = userService.getAllUsers(); //1)전체 리스트 User Entity 를 DTO 로 수신
         return ResponseEntity.ok(allUsers);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<UserDTO> getUserDTOById(@PathVariable long id) {
+        UserDTO user = userService.getUserDTOById(id); //2) 유저 개별 데이터를 DTO 로 수신 필요
         return ResponseEntity.ok(user);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.createUser(user);
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO user) {
+        UserDTO savedUser = userService.createUser(user); //3)유저 생성 데이터도 DTO 로 전달
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO user) {
+        UserDTO updatedUser = userService.updateUser(id, user); //4)유저 업데이트도 DTO 로 전달
         return ResponseEntity.ok(updatedUser);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> patchUser(@PathVariable Long id, @RequestBody User user) {
-        User patchedUser = userService.patchUser(id, user);
+    public ResponseEntity<UserDTO> patchUser(@PathVariable Long id, @RequestBody UserDTO user) {
+        UserDTO patchedUser = userService.patchUser(id, user); //5)유저 업데이트도 DTO 로 전달
         return ResponseEntity.ok(patchedUser);
     }
 
